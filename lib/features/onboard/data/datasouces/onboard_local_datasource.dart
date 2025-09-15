@@ -4,15 +4,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 @LazySingleton(as: IOnboardLocalDatasource)
 class OnboardLocalDatasource implements IOnboardLocalDatasource {
-  final SharedPreferences sharedPreferences;
-  const OnboardLocalDatasource(this.sharedPreferences);
+  final SharedPreferences _sharedPreferences;
+  const OnboardLocalDatasource(this._sharedPreferences);
 
   static const _key = "hasSeenOnBoard";
 
   @override
   Future<bool> hasSeenOnboard() async =>
-      sharedPreferences.getBool(_key) ?? false;
+      _sharedPreferences.getBool(_key) ?? false;
 
   @override
-  Future<void> wasSeenOnboard() async => sharedPreferences.setBool(_key, true);
+  Future<void> wasSeenOnboard() async => _sharedPreferences.setBool(_key, true);
 }

@@ -6,10 +6,10 @@ import 'package:note/features/onboard/domain/failure/onboard_failure.dart';
 
 @lazySingleton
 class WasSeenOnboardUsecase {
-  final OnboardRepository repository;
-  const WasSeenOnboardUsecase(this.repository);
+  final OnboardRepository _repository;
+  const WasSeenOnboardUsecase(this._repository);
   Future<Either<WriteOnboardFailure, void>> call() async {
-    final result = await repository.wasSeenOnboard();
+    final result = await _repository.wasSeenOnboard();
 
     result.fold(
       (failure) => logger.e(
