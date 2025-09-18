@@ -2,8 +2,8 @@ import 'package:logger/web.dart';
 
 final logger = Logger(
   printer: PrettyPrinter(
-    methodCount: 2,
-    colors: true,
+    methodCount: 0,
+    colors: false,
     printEmojis: true,
     lineLength: 120,
   ),

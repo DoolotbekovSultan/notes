@@ -4,12 +4,12 @@ import 'package:lottie/lottie.dart';
 import 'package:note/core/theme/app_dimens.dart';
 import 'package:note/core/theme/app_spacing.dart';
 import 'package:note/core/theme/app_text_styles.dart';
-import 'package:note/features/onboard/domain/entities/onboard_entity.dart';
+import 'package:note/features/onboarding/domain/entities/onboarding_entity.dart';
 
-class OnboardPage extends StatelessWidget {
-  final OnboardEntity entity;
+class OnboardingPage extends StatelessWidget {
+  final OnboardingEntity entity;
 
-  const OnboardPage({super.key, required this.entity});
+  const OnboardingPage({super.key, required this.entity});
 
   @override
   Widget build(BuildContext context) {
