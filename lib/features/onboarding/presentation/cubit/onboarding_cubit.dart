@@ -28,8 +28,8 @@ class OnboardingCubit extends Cubit<OnboardingState> {
         emit(OnboardingError(failure));
       },
       (hasSeenOnboard) {
+        logger.i("СоDстояние изменено на ${state.runtimeType}");
         emit(hasSeenOnboard ? OnboardingSkip() : OnboardingShow());
-        logger.i("Состояние изменено на ${state.runtimeType}");
       },
     );
   }

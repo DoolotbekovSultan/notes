@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppSpacing {
+  static final h2 = SizedBox(height: 2.h);
   static final h4 = SizedBox(height: 4.h);
   static final h8 = SizedBox(height: 8.h);
+  static final h12 = SizedBox(height: 12.h);
   static final h16 = SizedBox(height: 16.h);
   static final h24 = SizedBox(height: 24.h);
   static final h32 = SizedBox(height: 32.h);

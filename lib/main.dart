@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:note/core/di/injection.dart';
 import 'package:note/core/routes/go_router.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await configureDependecies();
+
+  await initializeDateFormatting('ru', null);
 
   runApp(const ScreenUtilWrapper());
 }

@@ -11,17 +11,13 @@ class HasSeenOnboardingUsecase {
   Future<Either<ReadOnboardingFailure, bool>> call() async {
     final result = await _repository.hasSeenOnboarding();
     result.fold(
-      (failure) {
-        logger.e(
-          "Usecase(HasSeenOnboardingUsecase): ошибка чтения hasSeenOnboarding",
-          error: failure.exception,
-        );
-      },
-      (hasSeenOnboarding) {
-        logger.i(
-          'UseCase(HasSeenOnboardingUsecase): успешно прочитано hasSeenOnboarding = $hasSeenOnboarding',
-        );
-      },
+      (failure) => logger.e(
+        "Usecase(HasSeenOnboardingUsecase): ошибка чтения hasSeenOnboarding",
+        error: failure.exception,
+      ),
+      (hasSeenOnboarding) => logger.i(
+        'UseCase(HasSeenOnboardingUsecase): успешно прочитано hasSeenOnboarding = $hasSeenOnboarding',
+      ),
     );
     return result;
   }

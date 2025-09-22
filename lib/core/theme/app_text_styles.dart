@@ -18,6 +18,13 @@ class AppTextStyles {
     color: AppColors.textPrimary,
   );
 
+  static final poppins16SemiBold = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w600,
+    color: AppColors.textPrimary,
+  );
+
   static final poppins15SemiBold = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 15.sp,
@@ -25,6 +32,26 @@ class AppTextStyles {
     color: AppColors.textPrimary,
   );
 
+  static final poppins12SemiBold = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w600,
+    color: AppColors.textPrimary,
+  );
+
+  static final poppins8Bold = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 8.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.textPrimary,
+  );
+
+  static final poppins10Normal = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 10.sp,
+    fontWeight: FontWeight.normal,
+    color: AppColors.textPrimary,
+  );
   // PottaOne
   static final pottaOne24Regular = TextStyle(
     fontFamily: 'PottaOne',
@@ -37,14 +64,14 @@ class AppTextStyles {
   static final inter28Bold = TextStyle(
     fontFamily: 'Inter',
     fontSize: 28.sp,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.bold,
     color: AppColors.textPrimary,
   );
 
   static final inter17Normal = TextStyle(
     fontFamily: 'Inter',
     fontSize: 17.sp,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.normal,
     color: AppColors.textSecondary,
   );
 

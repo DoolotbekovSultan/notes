@@ -58,11 +58,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   case OnboardingSkip():
                   case OnboardingNextButtonClicked():
                     widget.cubit.saveWasSeenBoard();
-                    logger.d("[OnboardingScreen] navigate to notes screen");
+                    logger.d("[OnboardingScreen] переходим в notes screen");
                     context.go(RouteNames.notes);
                     break;
                   case OnboardingSkipTextClicked():
-                    logger.d("[OnboardingScreen] skip all onboarding pages");
+                    logger.d(
+                      "[OnboardingScreen] пропускаем все onboarding pages",
+                    );
                     _pageController.jumpToPage(onboardingItems.length - 1);
                   default:
                 }
@@ -92,7 +94,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             child: GestureDetector(
                               onTap: () {
                                 logger.d(
-                                  "[OnboardingScreen] skip text was clicked",
+                                  "[OnboardingScreen] skip text был нажат",
                                 );
                                 widget.cubit.skipTextClicked();
                               },
@@ -156,7 +158,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             child: ElevatedButton(
                               onPressed: () {
                                 logger.d(
-                                  "[OnboardingScreen] start button was clicked",
+                                  "[OnboardingScreen] start button был нажат",
                                 );
                                 widget.cubit.nextButtonClicked();
                               },
@@ -164,7 +166,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 backgroundColor: AppColors.primary,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(
-                                    AppDimens.radiusMd,
+                                    AppDimens.radiusM,
                                   ),
                                 ),
                                 fixedSize: Size(230.w, 58.h),
