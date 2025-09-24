@@ -18,6 +18,13 @@ class AppTextStyles {
     color: AppColors.textPrimary,
   );
 
+  static final poppins24SemiBold = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 24.sp,
+    fontWeight: FontWeight.w600,
+    color: AppColors.textPrimary,
+  );
+
   static final poppins16SemiBold = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 16.sp,
@@ -39,6 +46,13 @@ class AppTextStyles {
     color: AppColors.textPrimary,
   );
 
+  static final poppins14SemiBold = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w600,
+    color: AppColors.textPrimary,
+  );
+
   static final poppins8Bold = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 8.sp,
@@ -50,6 +64,12 @@ class AppTextStyles {
     fontFamily: 'Poppins',
     fontSize: 10.sp,
     fontWeight: FontWeight.normal,
+    color: AppColors.textPrimary,
+  );
+  static final poppins12Regular = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w500,
     color: AppColors.textPrimary,
   );
   // PottaOne

@@ -3,6 +3,7 @@ import 'package:note/features/notes/domain/entities/note.dart';
 import 'package:note/features/notes/domain/failure/notes_failure.dart';
 
 abstract class INoteRepository {
-  Future<Either<GetAllNotesFailure, List<Note>>> getAllNotes();
+  Future<Either<LoadAllNotesFailure, List<Note>>> getAllNotes();
   Future<Either<InsertNoteFailure, void>> insertNote(Note note);
+  Future<Either<LoadNoteFailure, Note?>> getNoteById(int id);
 }

@@ -34,11 +34,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
     if (onboardingCubit.state is OnboardingShow) {
       logger.d("[SplashScreen] onboarding show");
-      logger.d("[SplashScreen] navigate to onboarding screen");
+      logger.d("[SplashScreen] переход на onboarding screen");
       context.go(RouteNames.onboarding);
     } else {
       logger.d("[SplashScreen] onboarding skip");
-      logger.d("[SplashScreen] navigate to notes screen");
+      logger.d("[SplashScreen] переход на notes screen");
       context.go(RouteNames.notes);
     }
   }

@@ -146,9 +146,29 @@ class _$NoteDao extends NoteDao {
   }
 
   @override
+  Future<NoteModel?> getNoteModelById(int id) async {
+    return _queryAdapter.query('SELECT * FROM NoteModel WHERE id = ?1',
+        mapper: (Map<String, Object?> row) => NoteModel(
+            id: row['id'] as int?,
+            title: row['title'] as String,
+            description: row['description'] as String,
+            dateTime: _dateTimeConverter.decode(row['dateTime'] as int),
+            color: _colorConverter.decode(row['color'] as int)),
+        arguments: [id]);
+  }
+
+  @override
+  Future<List<NoteModel>> searchNoteModels(String query) async {
+    return _queryAdapter.queryList(
+        'SELECT * FROM NoteModel     WHERE title LIKE \'%\' || ?1 || \'%\'       OR description LIKE \'%\' || ?1 || \'%\'',
+        mapper: (Map<String, Object?> row) => NoteModel(id: row['id'] as int?, title: row['title'] as String, description: row['description'] as String, dateTime: _dateTimeConverter.decode(row['dateTime'] as int), color: _colorConverter.decode(row['color'] as int)),
+        arguments: [query]);
+  }
+
+  @override
   Future<void> insertNoteModel(NoteModel noteModel) async {
     await _noteModelInsertionAdapter.insert(
-        noteModel, OnConflictStrategy.abort);
+        noteModel, OnConflictStrategy.replace);
   }
 }
 

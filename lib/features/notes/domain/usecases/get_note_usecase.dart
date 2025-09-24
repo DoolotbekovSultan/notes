@@ -6,20 +6,19 @@ import 'package:note/features/notes/domain/failure/notes_failure.dart';
 import 'package:note/features/notes/domain/repositories/i_note_repository.dart';
 
 @lazySingleton
-class GetAllNotesUsecase {
+class GetNoteUsecase {
   final INoteRepository _repository;
-  const GetAllNotesUsecase(this._repository);
+  const GetNoteUsecase(this._repository);
 
-  Future<Either<LoadAllNotesFailure, List<Note>>> call() async {
-    final result = await _repository.getAllNotes();
+  Future<Either<LoadNoteFailure, Note?>> call(int id) async {
+    final result = await _repository.getNoteById(id);
     result.fold(
       (failure) => logger.e(
-        "Usecase(GetAllNotesUsecase): ошибка получения данных",
+        "Usecase(GetNoteUsecase): ошибка получения данных",
         error: failure.exception,
       ),
-      (notes) => logger.i(
-        'UseCase(GetAllNotesUsecase): успешно получено notes = $notes',
-      ),
+      (note) =>
+          logger.i('UseCase(GetNoteUsecase): успешно получено note = $note'),
     );
     return result;
   }

@@ -15,6 +15,7 @@ class AppSpacing {
 
   static final w4 = SizedBox(width: 4.h);
   static final w8 = SizedBox(width: 8.h);
+  static final w12 = SizedBox(width: 12.h);
   static final w16 = SizedBox(width: 16.h);
   static final w24 = SizedBox(width: 24.h);
   static final w32 = SizedBox(width: 32.h);

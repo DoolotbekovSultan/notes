@@ -13,7 +13,7 @@ class NoteRepository extends INoteRepository {
   NoteRepository(this._localDatasource);
 
   @override
-  Future<Either<GetAllNotesFailure, List<Note>>> getAllNotes() async {
+  Future<Either<LoadAllNotesFailure, List<Note>>> getAllNotes() async {
     try {
       final result = await _localDatasource.getAllNotes();
       final entities = result.toDomains();
@@ -25,7 +25,7 @@ class NoteRepository extends INoteRepository {
         error: e,
         stackTrace: st,
       );
-      return Left(GetAllNotesFailure(e as Exception));
+      return Left(LoadAllNotesFailure(e as Exception));
     }
   }
 
@@ -45,6 +45,23 @@ class NoteRepository extends INoteRepository {
         stackTrace: st,
       );
       return Left(InsertNoteFailure(e as Exception));
+    }
+  }
+
+  @override
+  Future<Either<LoadNoteFailure, Note?>> getNoteById(int id) async {
+    try {
+      final result = await _localDatasource.getNoteById(id);
+      final entity = result?.toDomain();
+      logger.d("Repository(NoteRepository): result = $entity");
+      return Right(entity);
+    } catch (e, st) {
+      logger.e(
+        "Repository(NoteRepository): ошибка при попытке получения note c db",
+        error: e,
+        stackTrace: st,
+      );
+      return Left(LoadNoteFailure(e as Exception));
     }
   }
 }

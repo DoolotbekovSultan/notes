@@ -5,16 +5,21 @@ import 'package:note/features/notes/data/models/note_model.dart';
 
 @LazySingleton(as: INoteLocalDatasource)
 class NoteLocalDatasource extends INoteLocalDatasource {
-  final AppDatabase db;
-  NoteLocalDatasource(this.db);
+  final AppDatabase _db;
+  NoteLocalDatasource(this._db);
 
   @override
   Future<List<NoteModel>> getAllNotes() {
-    return db.noteDao.getAllNoteModels();
+    return _db.noteDao.getAllNoteModels();
   }
 
   @override
   Future<void> insertNote(NoteModel noteModel) {
-    return db.noteDao.insertNoteModel(noteModel);
+    return _db.noteDao.insertNoteModel(noteModel);
+  }
+
+  @override
+  Future<NoteModel?> getNoteById(int id) {
+    return _db.noteDao.getNoteModelById(id);
   }
 }

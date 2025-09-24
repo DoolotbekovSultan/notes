@@ -58,7 +58,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   case OnboardingSkip():
                   case OnboardingNextButtonClicked():
                     widget.cubit.saveWasSeenBoard();
-                    logger.d("[OnboardingScreen] переходим в notes screen");
+                    logger.d("[OnboardingScreen] переход на notes screen");
                     context.go(RouteNames.notes);
                     break;
                   case OnboardingSkipTextClicked():

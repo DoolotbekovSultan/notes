@@ -7,16 +7,23 @@ abstract class NotesFailure {
   String toString() => '"$message" Exception: $exception';
 }
 
-class GetAllNotesFailure extends NotesFailure {
-  GetAllNotesFailure(super.exception);
+class LoadAllNotesFailure extends NotesFailure {
+  LoadAllNotesFailure(super.exception);
 
   @override
-  String get message => "${super.message}не удалось прочитать.";
+  String get message => "${super.message}не удалось получить notes.";
+}
+
+class LoadNoteFailure extends NotesFailure {
+  LoadNoteFailure(super.exception);
+
+  @override
+  String get message => "${super.message}не удалось получить note.";
 }
 
 class InsertNoteFailure extends NotesFailure {
   InsertNoteFailure(super.exception);
 
   @override
-  String get message => "${super.message}не удалось записать.";
+  String get message => "${super.message}не удалось добавть note.";
 }

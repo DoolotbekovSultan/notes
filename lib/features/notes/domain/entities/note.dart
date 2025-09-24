@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:note/features/notes/utils/note_colors.dart';
 
 class Note {
   final int? id;
@@ -13,6 +14,6 @@ class Note {
     required this.title,
     required this.description,
     required this.dateTime,
-    this.color = const Color(0xFFFFF599),
-  });
+    Color? color,
+  }) : color = color ?? noteColors.first;
 }

@@ -40,7 +40,7 @@ class GridNoteItem extends StatelessWidget {
               ),
             ),
             Text(
-              dateFormatter.format(note.dateTime),
+              dateTimeFormatter.dateTime(note.dateTime),
               style: AppTextStyles.poppins8Bold.copyWith(
                 color: AppColors.textSS,
               ),

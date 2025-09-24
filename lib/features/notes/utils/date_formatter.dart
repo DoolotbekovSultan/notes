@@ -1,14 +1,24 @@
 import 'package:intl/intl.dart';
 
-final DateFormatter dateFormatter = DateFormatter();
+final DateTimeFormatter dateTimeFormatter = DateTimeFormatter();
 
-class DateFormatter {
+class DateTimeFormatter {
   final String locale;
 
-  DateFormatter({this.locale = 'ru'});
+  DateTimeFormatter({this.locale = 'ru'});
 
-  String format(DateTime dateTime) {
+  String dateTime(DateTime dateTime) {
     final formatter = DateFormat('d MMMM HH:mm', locale);
+    return formatter.format(dateTime);
+  }
+
+  String time(DateTime dateTime) {
+    final formatter = DateFormat('HH:mm', locale);
+    return formatter.format(dateTime);
+  }
+
+  String date(DateTime dateTime) {
+    final formatter = DateFormat('d MMMM', locale);
     return formatter.format(dateTime);
   }
 }

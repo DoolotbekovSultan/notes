@@ -7,10 +7,12 @@ class AppDimens {
   static const paddingMd = 16.0;
   static const paddingMmd = 18.0;
   static const paddingLg = 24.0;
+  static const paddingMl = 20.0;
   static const paddingXl = 32.0;
   static const paddingXll = 40.0;
 
   // Радиусы
+  static const radiusXs = 4.0;
   static const radiusS = 8.0;
   static const radiusM = 12.0;
   static const radiusMl = 16.0;
@@ -21,6 +23,12 @@ class AppDimens {
   static const iconMd = 24.0;
   static const iconLg = 32.0;
 
-  // Высоты
   static const appBarHeight = 50.0;
+
+  static const iconContainer = 18.0;
+
+  static const strokeWidth = 1.0;
+
+  static const crossSpacingMd = 8;
+  static const mainSpacingMd = 8;
 }
