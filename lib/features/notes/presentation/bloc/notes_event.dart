@@ -9,7 +9,17 @@ final class LoadNoteEvent extends NotesEvent {
   LoadNoteEvent(this.id);
 }
 
+final class SearchNotesEvent extends NotesEvent {
+  final String query;
+  SearchNotesEvent(this.query);
+}
+
 final class SaveNoteEvent extends NotesEvent {}
+
+final class DeleteNoteEvent extends NotesEvent {
+  final Note? note;
+  DeleteNoteEvent({this.note});
+}
 
 final class ChangeLayoutEvent extends NotesEvent {}
 
@@ -23,6 +33,13 @@ final class NoteEditedEvent extends NotesEvent {
 final class DescriptionEditedEvent extends NotesEvent {
   final String description;
   DescriptionEditedEvent(this.description);
+}
+
+final class DeleteNoteClickedEvent extends NotesEvent {}
+
+final class NoteLongPressedEvent extends NotesEvent {
+  final Note? note;
+  NoteLongPressedEvent({this.note});
 }
 
 final class ChangeColorButtonClickedEvent extends NotesEvent {}

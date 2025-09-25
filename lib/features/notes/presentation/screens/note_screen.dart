@@ -10,6 +10,7 @@ import 'package:note/core/theme/app_spacing.dart';
 import 'package:note/core/theme/app_text_styles.dart';
 import 'package:note/core/utils/logger.dart';
 import 'package:note/features/notes/presentation/bloc/notes_bloc.dart';
+import 'package:note/features/notes/presentation/widgets/dialogs/ask_to_do_dialog.dart';
 import 'package:note/features/notes/presentation/widgets/dialogs/change_color_dialog.dart';
 import 'package:note/features/notes/utils/date_formatter.dart';
 
@@ -265,6 +266,32 @@ class _NoteScreenState extends State<NoteScreen> {
                   logger.d("[NoteScreen] change color dialog закрыт");
                   _bloc.add(ChangeColorDialogClosedEvent());
                 });
+              } else if (state is ShowAskDeleteDialog) {
+                logger.d("[NoteScreen] ask delete dialog открыт");
+                showDialog(
+                  context: context,
+                  builder: (context) => Dialog(
+                    child: AskToDoDialog(
+                      ask: "Удалить заметку?",
+                      yes: "Удалить",
+                      no: 'Отмена',
+                      onYes: () {
+                        logger.d(
+                          "[NoteScreen] delete button был нажат в askDialog",
+                        );
+                        _bloc.add(DeleteNoteEvent());
+                        Navigator.of(context).pop();
+                      },
+                      onNo: () {
+                        logger.d(
+                          "[NoteScreen] cancel button был нажат в askDialog",
+                        );
+                        _bloc.add(ChangeColorDialogClosedEvent());
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ),
+                );
               }
             },
           ),

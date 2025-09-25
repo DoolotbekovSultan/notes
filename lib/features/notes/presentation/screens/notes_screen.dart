@@ -10,6 +10,7 @@ import 'package:note/core/theme/app_spacing.dart';
 import 'package:note/core/theme/app_text_styles.dart';
 import 'package:note/core/utils/logger.dart';
 import 'package:note/features/notes/presentation/bloc/notes_bloc.dart';
+import 'package:note/features/notes/presentation/widgets/dialogs/ask_to_do_dialog.dart';
 import 'package:note/features/notes/presentation/widgets/items/grid_note_item.dart';
 import 'package:note/features/notes/presentation/widgets/items/linear_note_item.dart';
 import 'package:note/features/notes/utils/layout_type.dart';
@@ -22,12 +23,19 @@ class NotesScreen extends StatefulWidget {
 }
 
 class _NotesScreenState extends State<NotesScreen> {
+  final TextEditingController searchController = TextEditingController();
   late final NotesBloc _bloc;
 
   @override
   void initState() {
     _bloc = getIt<NotesBloc>()..add(LoadAllNotesEvent());
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
   }
 
   @override
@@ -79,13 +87,36 @@ class _NotesScreenState extends State<NotesScreen> {
                         borderRadius: BorderRadius.circular(AppDimens.radiusM),
                         color: AppColors.secondarySurface,
                       ),
+                      child: TextField(
+                        controller: searchController,
+                        style: AppTextStyles.poppins12Regular,
+                        onChanged: (query) {
+                          _bloc.add(SearchNotesEvent(query));
+                        },
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          prefixIcon: Icon(
+                            Icons.search,
+                            size: AppDimens.iconSm,
+                            color: AppColors.icon.withValues(alpha: 0.7),
+                          ),
+                          hint: Text(
+                            "Поиск заметок",
+                            style: AppTextStyles.poppins10Normal.copyWith(
+                              color: AppColors.textPrimary.withValues(
+                                alpha: 0.5,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                     AppSpacing.h12,
                     if (state.notes.isEmpty)
                       Expanded(
                         child: Center(
                           child: Text(
-                            'Пока что нету заметок',
+                            'Нету заметок',
                             style: AppTextStyles.poppins15SemiBold.copyWith(
                               color: AppColors.textSS,
                             ),
@@ -100,11 +131,16 @@ class _NotesScreenState extends State<NotesScreen> {
                           itemBuilder: (context, index) {
                             final note = state.notes[index];
                             return GestureDetector(
+                              onLongPress: () {
+                                logger.d(
+                                  "[NotesScreen] Note[$index] был зажат",
+                                );
+                                _bloc.add(NoteLongPressedEvent(note: note));
+                              },
                               onTap: () {
                                 logger.d(
                                   "[NotesScreen] Note[$index].id = ${note.id} был нажат",
                                 );
-
                                 context.push("${RouteNames.note}/${note.id}");
                               },
                               child: LinearNoteItem(note: note),
@@ -125,6 +161,11 @@ class _NotesScreenState extends State<NotesScreen> {
                           itemBuilder: (context, index) {
                             final note = state.notes[index];
                             return GestureDetector(
+                              onLongPress: () {
+                                logger.d(
+                                  "[NotesScreen] Note[$index] был зажат",
+                                );
+                              },
                               onTap: () {
                                 logger.d(
                                   "[NotesScreen] Note[$index] был нажат",
@@ -147,6 +188,32 @@ class _NotesScreenState extends State<NotesScreen> {
                   logger.d("[NotesScreen] переход на note screen $id");
                   context.push(RouteNames.note + (id != null ? "/$id" : ""));
                   break;
+                case ShowAskDeleteDialog(note: final note):
+                  logger.d("[NotesScreen] ask delete dialog открыт");
+                  showDialog(
+                    context: context,
+                    builder: (context) => Dialog(
+                      child: AskToDoDialog(
+                        ask: "Удалить заметку?",
+                        yes: "Удалить",
+                        no: 'Отмена',
+                        onYes: () {
+                          logger.d(
+                            "[NotesScreen] delete button был нажат в askDialog",
+                          );
+                          _bloc.add(DeleteNoteEvent(note: note));
+                          Navigator.of(context).pop();
+                          _bloc.add(LoadAllNotesEvent());
+                        },
+                        onNo: () {
+                          logger.d(
+                            "[NotesScreen] cancel button был нажат в askDialog",
+                          );
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ),
+                  );
                 default:
                   return;
               }

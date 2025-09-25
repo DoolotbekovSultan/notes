@@ -18,4 +18,7 @@ abstract class NoteDao {
 
   @Insert(onConflict: OnConflictStrategy.replace)
   Future<void> insertNoteModel(NoteModel noteModel);
+
+  @delete
+  Future<void> deleteNoteModel(NoteModel noteModel);
 }

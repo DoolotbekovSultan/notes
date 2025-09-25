@@ -124,6 +124,17 @@ class _$NoteDao extends NoteDao {
                   'description': item.description,
                   'dateTime': _dateTimeConverter.encode(item.dateTime),
                   'color': _colorConverter.encode(item.color)
+                }),
+        _noteModelDeletionAdapter = DeletionAdapter(
+            database,
+            'NoteModel',
+            ['id'],
+            (NoteModel item) => <String, Object?>{
+                  'id': item.id,
+                  'title': item.title,
+                  'description': item.description,
+                  'dateTime': _dateTimeConverter.encode(item.dateTime),
+                  'color': _colorConverter.encode(item.color)
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -133,6 +144,8 @@ class _$NoteDao extends NoteDao {
   final QueryAdapter _queryAdapter;
 
   final InsertionAdapter<NoteModel> _noteModelInsertionAdapter;
+
+  final DeletionAdapter<NoteModel> _noteModelDeletionAdapter;
 
   @override
   Future<List<NoteModel>> getAllNoteModels() async {
@@ -169,6 +182,11 @@ class _$NoteDao extends NoteDao {
   Future<void> insertNoteModel(NoteModel noteModel) async {
     await _noteModelInsertionAdapter.insert(
         noteModel, OnConflictStrategy.replace);
+  }
+
+  @override
+  Future<void> deleteNoteModel(NoteModel noteModel) async {
+    await _noteModelDeletionAdapter.delete(noteModel);
   }
 }
 

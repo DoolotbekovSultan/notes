@@ -102,4 +102,10 @@ class AppTextStyles {
     fontWeight: FontWeight.bold,
     color: AppColors.textPrimary,
   );
+  static final roboto14Normal = TextStyle(
+    fontFamily: 'Roboto',
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textPrimary,
+  );
 }

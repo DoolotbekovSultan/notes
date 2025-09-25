@@ -27,6 +27,8 @@ class LinearNoteItem extends StatelessWidget {
             children: [
               Text(
                 note.title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: AppTextStyles.poppins12SemiBold.copyWith(
                   color: Colors.black,
                 ),

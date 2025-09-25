@@ -15,7 +15,7 @@ class NoteRepository extends INoteRepository {
   @override
   Future<Either<LoadAllNotesFailure, List<Note>>> getAllNotes() async {
     try {
-      final result = await _localDatasource.getAllNotes();
+      final result = await _localDatasource.getAllNoteModels();
       final entities = result.toDomains();
       logger.d("Repository(NoteRepository): result = $result");
       return Right(entities);
@@ -30,10 +30,29 @@ class NoteRepository extends INoteRepository {
   }
 
   @override
+  Future<Either<SearchNotesFailure, List<Note>>> searchNotes(
+    String query,
+  ) async {
+    try {
+      final result = await _localDatasource.searchNoteModels(query);
+      final entities = result.toDomains();
+      logger.d("Repository(NoteRepository): search($query) result = $result");
+      return Right(entities);
+    } catch (e, st) {
+      logger.e(
+        "Repository(NoteRepository): ошибка при попытке поиска notes в db",
+        error: e,
+        stackTrace: st,
+      );
+      return Left(SearchNotesFailure(e as Exception));
+    }
+  }
+
+  @override
   Future<Either<InsertNoteFailure, void>> insertNote(Note note) async {
     try {
       final model = note.toModel();
-      final result = await _localDatasource.insertNote(model);
+      final result = await _localDatasource.insertNoteModel(model);
       logger.d(
         "Repository(NoteRepository): успешно добавлен в dp note = $note",
       );
@@ -49,9 +68,26 @@ class NoteRepository extends INoteRepository {
   }
 
   @override
+  Future<Either<DeleteNoteFailure, void>> deleteNote(Note note) async {
+    try {
+      final model = note.toModel();
+      final result = await _localDatasource.deleteNoteModel(model);
+      logger.d("Repository(NoteRepository): успешно удален в dp note = $note");
+      return Right(result);
+    } catch (e, st) {
+      logger.e(
+        "Repository(NoteRepository): ошибка при попытке удаления note в db",
+        error: e,
+        stackTrace: st,
+      );
+      return Left(DeleteNoteFailure(e as Exception));
+    }
+  }
+
+  @override
   Future<Either<LoadNoteFailure, Note?>> getNoteById(int id) async {
     try {
-      final result = await _localDatasource.getNoteById(id);
+      final result = await _localDatasource.getNoteModelById(id);
       final entity = result?.toDomain();
       logger.d("Repository(NoteRepository): result = $entity");
       return Right(entity);

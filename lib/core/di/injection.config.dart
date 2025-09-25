@@ -19,10 +19,13 @@ import '../../features/notes/data/datasources/note_local_datasource.dart'
 import '../../features/notes/data/repositories/note_repository.dart' as _i270;
 import '../../features/notes/domain/repositories/i_note_repository.dart'
     as _i357;
+import '../../features/notes/domain/usecases/delete_note_usecase.dart' as _i335;
 import '../../features/notes/domain/usecases/get_all_notes_usecase.dart'
     as _i370;
 import '../../features/notes/domain/usecases/get_note_usecase.dart' as _i418;
 import '../../features/notes/domain/usecases/insert_note_usecase.dart' as _i138;
+import '../../features/notes/domain/usecases/search_notes_usecase.dart'
+    as _i301;
 import '../../features/notes/presentation/bloc/notes_bloc.dart' as _i207;
 import '../../features/onboarding/data/datasouces/i_onboarding_local_datasource.dart'
     as _i833;
@@ -77,16 +80,22 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.lazySingleton<_i357.INoteRepository>(
         () => _i270.NoteRepository(gh<_i787.INoteLocalDatasource>()));
+    gh.lazySingleton<_i335.DeleteNoteUsecase>(
+        () => _i335.DeleteNoteUsecase(gh<_i357.INoteRepository>()));
+    gh.lazySingleton<_i301.SearchNotesUsecase>(
+        () => _i301.SearchNotesUsecase(gh<_i357.INoteRepository>()));
     gh.lazySingleton<_i138.InsertNoteUsecase>(
         () => _i138.InsertNoteUsecase(gh<_i357.INoteRepository>()));
-    gh.lazySingleton<_i370.GetAllNotesUsecase>(
-        () => _i370.GetAllNotesUsecase(gh<_i357.INoteRepository>()));
     gh.lazySingleton<_i418.GetNoteUsecase>(
         () => _i418.GetNoteUsecase(gh<_i357.INoteRepository>()));
+    gh.lazySingleton<_i370.GetAllNotesUsecase>(
+        () => _i370.GetAllNotesUsecase(gh<_i357.INoteRepository>()));
     gh.lazySingleton<_i207.NotesBloc>(() => _i207.NotesBloc(
           gh<_i370.GetAllNotesUsecase>(),
           gh<_i138.InsertNoteUsecase>(),
           gh<_i418.GetNoteUsecase>(),
+          gh<_i335.DeleteNoteUsecase>(),
+          gh<_i301.SearchNotesUsecase>(),
         ));
     return this;
   }

@@ -6,6 +6,7 @@ class AppDimens {
   static const paddingSmm = 12.0;
   static const paddingMd = 16.0;
   static const paddingMmd = 18.0;
+  static const paddingMD = 20.0;
   static const paddingLg = 24.0;
   static const paddingMl = 20.0;
   static const paddingXl = 32.0;

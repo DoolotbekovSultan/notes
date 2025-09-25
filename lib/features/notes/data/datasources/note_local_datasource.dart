@@ -9,17 +9,27 @@ class NoteLocalDatasource extends INoteLocalDatasource {
   NoteLocalDatasource(this._db);
 
   @override
-  Future<List<NoteModel>> getAllNotes() {
+  Future<List<NoteModel>> getAllNoteModels() {
     return _db.noteDao.getAllNoteModels();
   }
 
   @override
-  Future<void> insertNote(NoteModel noteModel) {
+  Future<void> insertNoteModel(NoteModel noteModel) {
     return _db.noteDao.insertNoteModel(noteModel);
   }
 
   @override
-  Future<NoteModel?> getNoteById(int id) {
+  Future<NoteModel?> getNoteModelById(int id) {
     return _db.noteDao.getNoteModelById(id);
+  }
+
+  @override
+  Future<void> deleteNoteModel(NoteModel noteModel) {
+    return _db.noteDao.deleteNoteModel(noteModel);
+  }
+
+  @override
+  Future<List<NoteModel>> searchNoteModels(String query) {
+    return _db.noteDao.searchNoteModels(query);
   }
 }

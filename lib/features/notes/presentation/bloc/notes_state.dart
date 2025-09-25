@@ -28,6 +28,11 @@ final class NavigateNoteScreen extends NotesState {
   NavigateNoteScreen({this.id});
 }
 
+final class ShowAskDeleteDialog extends NotesState {
+  final Note? note;
+  ShowAskDeleteDialog({this.note});
+}
+
 final class ShowColorChangeDialog extends NotesState {}
 
 final class NavigateNotesScreen extends NotesState {}

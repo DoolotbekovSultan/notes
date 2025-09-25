@@ -14,6 +14,13 @@ class LoadAllNotesFailure extends NotesFailure {
   String get message => "${super.message}не удалось получить notes.";
 }
 
+class SearchNotesFailure extends NotesFailure {
+  SearchNotesFailure(super.exception);
+
+  @override
+  String get message => "${super.message}не удалось получить notes.";
+}
+
 class LoadNoteFailure extends NotesFailure {
   LoadNoteFailure(super.exception);
 
@@ -26,4 +33,11 @@ class InsertNoteFailure extends NotesFailure {
 
   @override
   String get message => "${super.message}не удалось добавть note.";
+}
+
+class DeleteNoteFailure extends NotesFailure {
+  DeleteNoteFailure(super.exception);
+
+  @override
+  String get message => "${super.message}не удалось удалить note.";
 }

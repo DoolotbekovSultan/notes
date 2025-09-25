@@ -41,10 +41,14 @@ class ChangeColorDialog extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
+                              Navigator.of(context).pop();
+                              getIt<NotesBloc>().add(
+                                ChangeColorDialogClosedEvent(),
+                              );
                               logger.d(
                                 "[NoteScreen] delete note button был нажат",
                               );
-                              //TODO: delete note logic
+                              getIt<NotesBloc>().add(DeleteNoteClickedEvent());
                             },
                             child: SizedBox(
                               height: 30.h,
