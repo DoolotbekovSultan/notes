@@ -22,10 +22,14 @@ import '../../features/notes/domain/repositories/i_note_repository.dart'
 import '../../features/notes/domain/usecases/delete_note_usecase.dart' as _i335;
 import '../../features/notes/domain/usecases/get_all_notes_usecase.dart'
     as _i370;
+import '../../features/notes/domain/usecases/get_is_linear_usecase.dart'
+    as _i867;
 import '../../features/notes/domain/usecases/get_note_usecase.dart' as _i418;
 import '../../features/notes/domain/usecases/insert_note_usecase.dart' as _i138;
 import '../../features/notes/domain/usecases/search_notes_usecase.dart'
     as _i301;
+import '../../features/notes/domain/usecases/set_is_linier.usecase.dart'
+    as _i69;
 import '../../features/notes/presentation/bloc/notes_bloc.dart' as _i207;
 import '../../features/onboarding/data/datasouces/i_onboarding_local_datasource.dart'
     as _i833;
@@ -65,7 +69,10 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.lazySingleton<_i787.INoteLocalDatasource>(
-        () => _i707.NoteLocalDatasource(gh<_i951.AppDatabase>()));
+        () => _i707.NoteLocalDatasource(
+              gh<_i951.AppDatabase>(),
+              gh<_i460.SharedPreferences>(),
+            ));
     gh.lazySingleton<_i833.IOnboardingLocalDatasource>(
         () => _i130.OnboardingLocalDatasource(gh<_i460.SharedPreferences>()));
     gh.lazySingleton<_i442.IOnboardingRepository>(() =>
@@ -90,6 +97,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i418.GetNoteUsecase(gh<_i357.INoteRepository>()));
     gh.lazySingleton<_i370.GetAllNotesUsecase>(
         () => _i370.GetAllNotesUsecase(gh<_i357.INoteRepository>()));
+    gh.lazySingleton<_i867.GetIsLinearUsecase>(
+        () => _i867.GetIsLinearUsecase(gh<_i357.INoteRepository>()));
+    gh.lazySingleton<_i69.SetIsLinearUsecase>(
+        () => _i69.SetIsLinearUsecase(gh<_i357.INoteRepository>()));
     gh.lazySingleton<_i207.NotesBloc>(() => _i207.NotesBloc(
           gh<_i370.GetAllNotesUsecase>(),
           gh<_i138.InsertNoteUsecase>(),

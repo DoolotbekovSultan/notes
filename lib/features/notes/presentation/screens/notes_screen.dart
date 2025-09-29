@@ -165,6 +165,7 @@ class _NotesScreenState extends State<NotesScreen> {
                                 logger.d(
                                   "[NotesScreen] Note[$index] был зажат",
                                 );
+                                _bloc.add(NoteLongPressedEvent(note: note));
                               },
                               onTap: () {
                                 logger.d(

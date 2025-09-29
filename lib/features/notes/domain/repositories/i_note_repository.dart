@@ -8,4 +8,6 @@ abstract class INoteRepository {
   Future<Either<DeleteNoteFailure, void>> deleteNote(Note note);
   Future<Either<LoadNoteFailure, Note?>> getNoteById(int id);
   Future<Either<SearchNotesFailure, List<Note>>> searchNotes(String query);
+  Future<Either<SetIsLinierFailure, void>> setIsLinier(bool isLinier);
+  Future<Either<GetIsLinierFailure, bool>> gettIsLinier();
 }

@@ -6,4 +6,6 @@ abstract class INoteLocalDatasource {
   Future<void> insertNoteModel(NoteModel noteModel);
   Future<NoteModel?> getNoteModelById(int id);
   Future<void> deleteNoteModel(NoteModel noteModel);
+  Future<bool> getIsLinier();
+  Future<void> setIsLinier(bool isLinier);
 }

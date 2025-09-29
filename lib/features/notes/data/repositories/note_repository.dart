@@ -100,4 +100,38 @@ class NoteRepository extends INoteRepository {
       return Left(LoadNoteFailure(e as Exception));
     }
   }
+
+  @override
+  Future<Either<GetIsLinierFailure, bool>> gettIsLinier() async {
+    try {
+      final result = await _localDatasource.getIsLinier();
+      logger.d("Repository(OnboardingRepository): isLinier = $result");
+      return Right(result);
+    } catch (e, st) {
+      logger.e(
+        'Repository(OnboardingRepository): ошибка при чтении hasSeenOnboarding',
+        error: e,
+        stackTrace: st,
+      );
+      return Left(GetIsLinierFailure(e as Exception));
+    }
+  }
+
+  @override
+  Future<Either<SetIsLinierFailure, void>> setIsLinier(bool isLinier) async {
+    try {
+      final result = await _localDatasource.setIsLinier(isLinier);
+      logger.d(
+        "Repository(OnboardingRepository): isLinier успешно  изменен на = $isLinier",
+      );
+      return Right(result);
+    } catch (e, st) {
+      logger.e(
+        'Repository(OnboardingRepository): ошибка при изменении isLinier',
+        error: e,
+        stackTrace: st,
+      );
+      return Left(SetIsLinierFailure(e as Exception));
+    }
+  }
 }

@@ -24,7 +24,7 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
   final DeleteNoteUsecase _deleteNoteUsecase;
   final SearchNotesUsecase _searchNotesUsecase;
 
-  LayoutType _layoutType = LayoutType.linear;
+  late LayoutType _layoutType = LayoutType.linear;
   Note? _note;
   Note? _oldNote;
   String? _query;

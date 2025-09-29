@@ -4,6 +4,8 @@ sealed class NotesEvent {}
 
 final class LoadAllNotesEvent extends NotesEvent {}
 
+final class LoadIsLinierEvent extends NotesEvent {}
+
 final class LoadNoteEvent extends NotesEvent {
   final int? id;
   LoadNoteEvent(this.id);
@@ -38,8 +40,8 @@ final class DescriptionEditedEvent extends NotesEvent {
 final class DeleteNoteClickedEvent extends NotesEvent {}
 
 final class NoteLongPressedEvent extends NotesEvent {
-  final Note? note;
-  NoteLongPressedEvent({this.note});
+  final Note note;
+  NoteLongPressedEvent({required this.note});
 }
 
 final class ChangeColorButtonClickedEvent extends NotesEvent {}

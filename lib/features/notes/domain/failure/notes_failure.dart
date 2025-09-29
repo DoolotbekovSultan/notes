@@ -14,6 +14,20 @@ class LoadAllNotesFailure extends NotesFailure {
   String get message => "${super.message}не удалось получить notes.";
 }
 
+class GetIsLinierFailure extends NotesFailure {
+  GetIsLinierFailure(super.exception);
+
+  @override
+  String get message => "${super.message}не удалось прочитать isLinier.";
+}
+
+class SetIsLinierFailure extends NotesFailure {
+  SetIsLinierFailure(super.exception);
+
+  @override
+  String get message => "${super.message}не удалось изменить isLinier.";
+}
+
 class SearchNotesFailure extends NotesFailure {
   SearchNotesFailure(super.exception);
 
