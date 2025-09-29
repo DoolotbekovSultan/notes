@@ -22,7 +22,9 @@ class ChangeColorDialog extends StatelessWidget {
           return Stack(
             children: [
               Positioned(
-                top: AppDimens.appBarHeight.h,
+                top:
+                    AppDimens.appBarHeight.h +
+                    MediaQuery.of(context).padding.top,
                 right: AppDimens.paddingMmd.w,
                 child: Material(
                   color: Colors.transparent,
@@ -38,6 +40,7 @@ class ChangeColorDialog extends StatelessWidget {
                         horizontal: AppDimens.paddingSmm.w,
                       ),
                       child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           GestureDetector(
                             onTap: () {
@@ -82,13 +85,17 @@ class ChangeColorDialog extends StatelessWidget {
                             ),
                           ),
                           AppSpacing.h8,
-                          GridView.count(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            crossAxisCount: 3,
-                            crossAxisSpacing: AppDimens.paddingXs.w,
-                            mainAxisSpacing: AppDimens.paddingXs.h,
-
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              "Поменять цвет",
+                              style: AppTextStyles.poppins12Regular,
+                            ),
+                          ),
+                          AppSpacing.h4,
+                          Wrap(
+                            spacing: AppDimens.paddingXs.w,
+                            runSpacing: AppDimens.paddingXs.h,
                             children: List.generate(
                               noteColors.length,
                               (index) => GestureDetector(
