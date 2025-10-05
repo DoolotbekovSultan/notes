@@ -192,48 +192,61 @@ class _NoteScreenState extends State<NoteScreen> {
                         ],
                       ),
                       AppSpacing.h16,
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: AppDimens.paddingSm,
-                        ),
-                        child: TextField(
-                          cursorColor: AppColors.primary,
-                          controller: _titleEditingController,
-                          focusNode: _titleFocus,
-                          maxLines: null,
-                          style: AppTextStyles.poppins24SemiBold.copyWith(
-                            color: AppColors.textPrimary.withValues(alpha: 0.7),
-                          ),
-                          decoration: InputDecoration(border: InputBorder.none),
-                          onChanged: (title) =>
-                              _bloc.add(NoteEditedEvent(title: title)),
-                        ),
-                      ),
-                      Flexible(
-                        fit: FlexFit.loose,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: AppDimens.paddingSm,
-                          ),
-                          child: TextField(
-                            cursorColor: AppColors.primary,
-                            controller: _descriptionEditingController,
-                            focusNode: _descriptionFocus,
-                            keyboardType: TextInputType.multiline,
-                            expands: true,
-                            maxLines: null,
-                            minLines: null,
-                            style: AppTextStyles.poppins12SemiBold.copyWith(
-                              color: AppColors.textPrimary.withValues(
-                                alpha: 0.7,
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: AppDimens.paddingSm,
+                                ),
+                                child: TextField(
+                                  cursorColor: AppColors.primary,
+                                  controller: _titleEditingController,
+                                  focusNode: _titleFocus,
+                                  maxLines: null,
+                                  style: AppTextStyles.poppins24SemiBold
+                                      .copyWith(
+                                        color: AppColors.textPrimary.withValues(
+                                          alpha: 0.7,
+                                        ),
+                                      ),
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                  ),
+                                  onChanged: (title) =>
+                                      _bloc.add(NoteEditedEvent(title: title)),
+                                ),
                               ),
-                            ),
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                            ),
-                            onChanged: (description) => getIt<NotesBloc>().add(
-                              NoteEditedEvent(description: description),
-                            ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: AppDimens.paddingSm,
+                                ),
+                                child: TextField(
+                                  cursorColor: AppColors.primary,
+                                  controller: _descriptionEditingController,
+                                  focusNode: _descriptionFocus,
+                                  keyboardType: TextInputType.multiline,
+                                  maxLines: null,
+                                  minLines: null,
+                                  style: AppTextStyles.poppins12SemiBold
+                                      .copyWith(
+                                        color: AppColors.textPrimary.withValues(
+                                          alpha: 0.7,
+                                        ),
+                                      ),
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                  ),
+                                  onChanged: (description) =>
+                                      getIt<NotesBloc>().add(
+                                        NoteEditedEvent(
+                                          description: description,
+                                        ),
+                                      ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),

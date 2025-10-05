@@ -58,7 +58,7 @@ class _NotesScreenState extends State<NotesScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Icon(
-                            Icons.menu,
+                            Icons.folder,
                             color: AppColors.icon.withValues(alpha: 0.7),
                           ),
                           Text(
@@ -89,6 +89,7 @@ class _NotesScreenState extends State<NotesScreen> {
                       ),
                       child: TextField(
                         controller: searchController,
+                        cursorColor: AppColors.primary,
                         style: AppTextStyles.poppins12Regular,
                         onChanged: (query) {
                           _bloc.add(SearchNotesEvent(query));

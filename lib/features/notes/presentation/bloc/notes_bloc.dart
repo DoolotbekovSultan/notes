@@ -198,7 +198,15 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
       description: event.description,
       color: event.color,
     );
-    emit(NoteLoadedSuccess(_note!, showReadyText: _oldNote != _note));
+    emit(
+      NoteLoadedSuccess(
+        _note!,
+        showReadyText:
+            _oldNote != _note &&
+            (_note != null &&
+                (_note!.title.isNotEmpty || _note!.description.isNotEmpty)),
+      ),
+    );
     logger.i("Состояние изменено на ${state.runtimeType}");
   }
 
